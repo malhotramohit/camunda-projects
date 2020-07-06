@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0aqdxzm" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <decision id="RuleSet1" name="Decision 1">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Name" camunda:inputVariable="name">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="outcome" name="outcome" typeRef="string" />
+      <rule id="DecisionRule_0qp2iu0">
+        <inputEntry id="UnaryTests_1mzxt9w">
+          <text>"Mohit"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ojzvck">
+          <text>"12"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xfvjwc">
+        <inputEntry id="UnaryTests_1cae09n">
+          <text>"Neeti"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1u4xz91">
+          <text>"13"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

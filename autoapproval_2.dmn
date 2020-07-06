@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_11q6xj8" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <decision id="AutuApproval" name="Decision 1">
+    <extensionElements>
+      <biodi:bounds x="159" y="80" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_18qwx63" hitPolicy="FIRST">
+      <input id="InputClause_0clb9wg" label="icd10">
+        <inputExpression id="LiteralExpression_0q78gd8" typeRef="string" expressionLanguage="feel">
+          <text>requestinfo.icd10</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1y68dau" label="outcome" name="outcome" typeRef="string" />
+      <rule id="DecisionRule_1ww25nx">
+        <inputEntry id="UnaryTests_1a1d69q">
+          <text>"d10"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16d7iok">
+          <text>"Approved"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ge8frr">
+        <inputEntry id="UnaryTests_0ql85h1">
+          <text>"d40"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qm0fp0">
+          <text>"Not Approved"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

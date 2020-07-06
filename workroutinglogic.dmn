@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_0za2jof" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <decision id="workQueueRoutingRule" name="WorkQueueRoutingRule">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="requestType">
+        <inputExpression id="inputExpression_1" typeRef="string" expressionLanguage="feel">
+          <text>requestinfo.requestType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_11yxxve" label="category">
+        <inputExpression id="LiteralExpression_0ttw41c" typeRef="string" expressionLanguage="feel">
+          <text>requestinfo.category</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="workbasketname" name="workbasketname" typeRef="string" />
+      <rule id="DecisionRule_0k5qkb7">
+        <inputEntry id="UnaryTests_14qch3v">
+          <text>"Clinical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xkrjym">
+          <text>"Cancer"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1b716dp">
+          <text>"workqueueurgent"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0g3eosl">
+        <inputEntry id="UnaryTests_0g45ijb">
+          <text>"Non-Clinical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08xwvyv">
+          <text>"Flu"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hwkpjs">
+          <text>"workqueue"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

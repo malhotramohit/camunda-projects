@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/cmmn" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" id="Definitions_1vcup7h" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <cmmn:caseFileItemDefinition id="CaseFileItemDefinition_1opihky" />
+  <cmmn:caseFileItemDefinition id="CaseFileItemDefinition_17jrfui" name="" />
+  <cmmn:case id="Case_0bxnr8d" name="AuthCase">
+    <cmmn:casePlanModel id="CasePlanModel_06he2ee" name="AuthWorkFlow Case">
+      <cmmn:extensionElements />
+      <cmmn:planItem id="EnterRequestInfoTask" definitionRef="HumanTask_0uaftjt">
+        <cmmn:itemControl id="PlanItemControl_0ke5grm">
+          <cmmn:manualActivationRule id="ManualActivationRule_0x9pa6n">
+            <cmmn:condition id="Expression_0xea2v9">${false}</cmmn:condition>
+          </cmmn:manualActivationRule>
+        </cmmn:itemControl>
+      </cmmn:planItem>
+      <cmmn:planItem id="PlanItem_0m8r0ms" definitionRef="Milestone_0o11sud">
+        <cmmn:itemControl id="PlanItemControl_15vhb8o" />
+        <cmmn:entryCriterion id="EntryCriterion_1puzjwd" sentryRef="Sentry_1oncw11" />
+      </cmmn:planItem>
+      <cmmn:planItem id="PlanItem_1t15cph" definitionRef="ProcessTask_1ms5ryu">
+        <cmmn:entryCriterion id="EntryCriterion_0r17vze" sentryRef="Sentry_06ezc9t" />
+      </cmmn:planItem>
+      <cmmn:sentry id="Sentry_1oncw11">
+        <cmmn:planItemOnPart id="PlanItemOnPart_1x8nzhk" sourceRef="EnterRequestInfoTask">
+          <cmmn:standardEvent>complete</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_06ezc9t">
+        <cmmn:planItemOnPart id="PlanItemOnPart_0cqun0m" sourceRef="EnterRequestInfoTask">
+          <cmmn:standardEvent>complete</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:humanTask id="HumanTask_0uaftjt" name="Enter Req Info" camunda:candidateGroups="systemqueue" camunda:priority="1">
+        <cmmn:extensionElements>
+          <camunda:caseExecutionListener event="complete" expression="${caseExecution.setVariable(&#39;outcome&#39;, &#39;foo1&#39;)}" />
+        </cmmn:extensionElements>
+      </cmmn:humanTask>
+      <cmmn:milestone id="Milestone_0o11sud" name="Enter Req Milestone Done" />
+      <cmmn:processTask id="ProcessTask_1ms5ryu" name="Clinical review Process" processRef="clinicalReviewProcess">
+        <cmmn:extensionElements>
+          <camunda:in source="requestinfo" target="requestinfo" />
+          <camunda:in businessKey="#{caseExecution.caseBusinessKey}" />
+          <camunda:out source="requestinfo" target="requestinfo" />
+          <camunda:in source="outcomec" target="outcome" />
+          <camunda:out source="outcome" target="outcomec" />
+        </cmmn:extensionElements>
+      </cmmn:processTask>
+    </cmmn:casePlanModel>
+  </cmmn:case>
+  <cmmndi:CMMNDI>
+    <cmmndi:CMMNDiagram id="AuthWorkflowCase_id" name="AuthWorkflowcase">
+      <cmmndi:Size width="500" height="500" />
+      <cmmndi:CMMNShape id="DI_CasePlanModel_06he2ee" cmmnElementRef="CasePlanModel_06he2ee">
+        <dc:Bounds x="156" y="99" width="629" height="389" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_1j795o1_di" cmmnElementRef="EnterRequestInfoTask">
+        <dc:Bounds x="210" y="139" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0m8r0ms_di" cmmnElementRef="PlanItem_0m8r0ms">
+        <dc:Bounds x="550" y="159" width="100" height="40" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_1puzjwd_di" cmmnElementRef="EntryCriterion_1puzjwd">
+        <dc:Bounds x="540" y="164" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_1x8nzhk_di" cmmnElementRef="PlanItemOnPart_1x8nzhk" targetCMMNElementRef="EntryCriterion_1puzjwd" isStandardEventVisible="true">
+        <di:waypoint x="310" y="179" />
+        <di:waypoint x="416" y="179" />
+        <di:waypoint x="416" y="178" />
+        <di:waypoint x="540" y="178" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="390" y="173.5" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="PlanItem_06y4m3g_di" cmmnElementRef="PlanItem_1t15cph">
+        <dc:Bounds x="220" y="309" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_0r17vze_di" cmmnElementRef="EntryCriterion_0r17vze">
+        <dc:Bounds x="210" y="330" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_0cqun0m_di" cmmnElementRef="PlanItemOnPart_0cqun0m" targetCMMNElementRef="EntryCriterion_0r17vze" isStandardEventVisible="true">
+        <di:waypoint x="260" y="219" />
+        <di:waypoint x="260" y="259" />
+        <di:waypoint x="220" y="259" />
+        <di:waypoint x="220" y="330" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="253" y="249" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+    </cmmndi:CMMNDiagram>
+  </cmmndi:CMMNDI>
+</cmmn:definitions>
