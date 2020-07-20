@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/cmmn" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" id="Definitions_1nzt7lh" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <cmmn:case id="ProvMemberCase_v1">
+    <cmmn:casePlanModel id="CasePlanModel_1a7fsj5" name="ProvisionalMemberCase">
+      <cmmn:planItem id="Stage1" definitionRef="Stage_1a4i15l" />
+      <cmmn:stage id="Stage_1a4i15l" name="">
+        <cmmn:planItem id="EnterMemberInfoTaskId" definitionRef="HumanTask_02vdpdh">
+          <cmmn:itemControl id="PlanItemControl_187w73s">
+            <cmmn:manualActivationRule id="ManualActivationRule_0kuef32">
+              <cmmn:condition id="Expression_0po55fb">${false}</cmmn:condition>
+            </cmmn:manualActivationRule>
+          </cmmn:itemControl>
+        </cmmn:planItem>
+        <cmmn:planItem id="ProvisonalMemberProcessId" definitionRef="ProcessTask_0513mj7">
+          <cmmn:entryCriterion id="EntryCriterion_0trhtgq" sentryRef="Sentry_01cp96z" />
+        </cmmn:planItem>
+        <cmmn:sentry id="Sentry_01cp96z">
+          <cmmn:planItemOnPart id="PlanItemOnPart_0n5ar92" sourceRef="EnterMemberInfoTaskId">
+            <cmmn:standardEvent>complete</cmmn:standardEvent>
+          </cmmn:planItemOnPart>
+        </cmmn:sentry>
+        <cmmn:humanTask id="HumanTask_02vdpdh" name="Enter Member Info Task" />
+        <cmmn:processTask id="ProcessTask_0513mj7" name="Provisonal Member Process" processRef="AuthApprovalProcessId">
+          <cmmn:extensionElements>
+            <camunda:in source="memberInfo" target="memberInfo" />
+            <camunda:in businessKey="#{caseExecution.caseBusinessKey}" />
+          </cmmn:extensionElements>
+        </cmmn:processTask>
+      </cmmn:stage>
+    </cmmn:casePlanModel>
+  </cmmn:case>
+  <cmmndi:CMMNDI>
+    <cmmndi:CMMNDiagram id="CMMNDiagram_1s7263z">
+      <cmmndi:Size width="500" height="500" />
+      <cmmndi:CMMNShape id="DI_CasePlanModel_1a7fsj5" cmmnElementRef="CasePlanModel_1a7fsj5">
+        <dc:Bounds x="173" y="113" width="789" height="389" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0c2rh59_di" cmmnElementRef="EnterMemberInfoTaskId">
+        <dc:Bounds x="225" y="154" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0lc3f8c_di" cmmnElementRef="ProvisonalMemberProcessId">
+        <dc:Bounds x="410" y="154" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_0trhtgq_di" cmmnElementRef="EntryCriterion_0trhtgq">
+        <dc:Bounds x="400" y="179" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_1jahjjy_di" cmmnElementRef="Stage1">
+        <dc:Bounds x="199" y="124" width="351" height="353" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_0n5ar92_di" cmmnElementRef="PlanItemOnPart_0n5ar92" targetCMMNElementRef="EntryCriterion_0trhtgq" isStandardEventVisible="true">
+        <di:waypoint x="325" y="194" />
+        <di:waypoint x="363" y="194" />
+        <di:waypoint x="363" y="193" />
+        <di:waypoint x="400" y="193" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="337" y="183.5" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+    </cmmndi:CMMNDiagram>
+  </cmmndi:CMMNDI>
+</cmmn:definitions>
